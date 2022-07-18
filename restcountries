@@ -1,0 +1,75 @@
+1. How to compare two JSON have the same properties without order?
+        a. var obj1 = {name: "Person 1", age:5};
+        b. var obj2 = {age:5, name: "Person 1"};
+        
+    var obj1 = { name: "Person 1", age:5};
+    var obj2 = { age:5, name: "Person 1"};
+    
+    var flag=true;
+    
+    if(Object.keys(obj1).length==Object.keys(obj2).length){
+        for(let key in obj1) {
+            if(obj1[key] == obj2[key]){
+                continue;
+            }
+            else{
+                flag=false;
+                break;
+            }
+            }
+        }
+    else {
+        flag=false;
+    }
+    console.log(flag);
+    
+    
+ 2. Using the rest country API URL, display all the country flags in the console.
+ 
+  
+let xhr =new  XMLHttpRequest(); 
+xhr.open('GET',"https://restcountries.com/v3.1/all")  
+
+xhr.onload=function(){ 
+if(xhr.status>=200&& xhr.status<300){
+    let data=JSON.parse(this.response);
+    for(let i=0; i<data.length; i++){
+        console.log(data[i].flag);
+    }
+}else{
+    console.log("Error");
+}
+}
+
+xhr.send();
+
+
+
+3. Using the same rest country and print all country names, regions, sub region and population.
+
+ 
+ let xhr =new  XMLHttpRequest(); 
+ xhr.open('GET',"https://restcountries.com/v3.1/all")  
+ xhr.onload=function(){ 
+if(xhr.status>=200&& xhr.status<300){
+    let data=JSON.parse(this.response);//convert the stringified data to human readable format
+    console.log(data);
+
+    for(let i=0; i<data.length; i++){
+        console.log(data[i].name.common);
+        console.log(data[i].region);
+       console.log(data[i].subregion);
+       console.log(data[i].population);
+
+}
+     
+}else{
+    console.log("Error");
+}
+}
+
+xhr.send();
+
+
+    
+        
